@@ -116,7 +116,12 @@ Planejamento com IA, design system, base de segurança e quatro frentes em paral
 
 Criado pela
 
-<a href="https://gruponomics.com.br" title="Nomics Tech"><img alt="" src="docs/img/nomics-tech-simbolo.png" height="22"> <b>Nomics Tech</b></a>
+<a href="https://gruponomics.com.br" title="Nomics Tech">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/img/nomics-tech-escuro.png">
+    <img alt="Nomics Tech" src="docs/img/nomics-tech-claro.png" height="30">
+  </picture>
+</a>
 
 <br><br>
 
