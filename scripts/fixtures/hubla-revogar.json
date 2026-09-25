@@ -1,0 +1,10 @@
+{
+  "type": "customer.member_removed",
+  "event": {
+    "product": { "id": "produto-teste", "name": "Hub de Agentes (teste)" },
+    "products": [{ "id": "produto-teste", "name": "Hub de Agentes (teste)" }],
+    "subscription": { "id": "assinatura-teste-0001", "status": "canceled", "type": "one_time" },
+    "user": { "firstName": "Pessoa", "lastName": "Teste", "email": "pessoa.teste@example.com" }
+  },
+  "version": "2.0.0"
+}

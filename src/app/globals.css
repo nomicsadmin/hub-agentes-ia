@@ -1,0 +1,457 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────────────────
+ * === SEU DESIGN SYSTEM === · TOKENS
+ * Troque os valores abaixo (claro em :root, escuro em .dark) para
+ * aplicar a sua marca. Os componentes só usam estes tokens, então
+ * nenhum outro arquivo precisa mudar. Guia: docs/06-design-system.md
+ *
+ * Tema de exemplo: GRAFITE
+ * Grafite sobre papel: interface acromática, texto em tinta
+ * grafite, superfícies planas separadas por uma linha fina.
+ * A cor só aparece em um momento: a varredura do modelo Pro.
+ * Fonte da verdade: DESIGN.md
+ *
+ * Tokens derivados (os que usam var()) são recalculados em cada
+ * tema pela lista de seletores do bloco "Tokens derivados".
+ * ───────────────────────────────────────────────────────── */
+
+:root {
+  /* Superfícies */
+  --canvas: #ffffff; /* área da conversa */
+  --rail: #f9f9f9; /* barra lateral */
+  --surface: #ffffff; /* menus, compositor, painéis flutuantes */
+  --bubble: #f4f4f4; /* mensagem do usuário, blocos de código */
+  --edge: #e6e6e6; /* divisória forte, trilhos inativos */
+
+  /* Tinta */
+  --ink: #0d0d0d; /* texto e ícones principais */
+  --ink-2: #5d5d5d; /* texto secundário, metadados */
+  --ink-3: #6e6e6e; /* ajuda, placeholder (AA no branco) */
+  --ink-4: #8f8f8f; /* desabilitado, decorativo; nunca texto de leitura */
+  --ink-inverse: #ffffff; /* texto sobre tinta */
+
+  /* Estrutura e estados */
+  --line: rgb(0 0 0 / 0.1); /* a única divisória estrutural */
+  --line-strong: rgb(0 0 0 / 0.15); /* borda em foco/hover */
+  --hover: rgb(0 0 0 / 0.05); /* véu de hover */
+  --press: rgb(0 0 0 / 0.08); /* pressionado, item ativo */
+  --tooltip: #000000;
+  --scrim: rgb(0 0 0 / 0.5);
+  --focus: rgb(13 13 13 / 0.55);
+  --selection: rgb(13 13 13 / 0.14);
+  --danger: #c42b26; /* só ações destrutivas e erros */
+
+  /* Tipografia e forma (temas trocam estes valores) */
+  --f-sans: ui-sans-serif, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --f-display: var(--f-sans);
+  --f-label: var(--f-sans);
+  --f-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --display-case: none;
+  --display-tracking: normal;
+  --display-size: 24px;
+  --display-leading: 1.33;
+  --label-case: none;
+  --label-tracking: normal;
+  --r-row: 6px;
+  --r-control: 10px;
+  --r-panel: 16px;
+  --r-bubble: 18px;
+  --r-composer: 28px;
+  --r-badge: 0px;
+
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #212121;
+  --rail: #181818;
+  --surface: #303030;
+  --bubble: #303030;
+  --edge: #3a3a3a;
+
+  --ink: #ececec;
+  --ink-2: #b4b4b4;
+  --ink-3: #9b9b9b;
+  --ink-4: #6b6b6b;
+  --ink-inverse: #0d0d0d;
+
+  --line: rgb(255 255 255 / 0.1);
+  --line-strong: rgb(255 255 255 / 0.18);
+  --hover: rgb(255 255 255 / 0.06);
+  --press: rgb(255 255 255 / 0.1);
+  --tooltip: #000000;
+  --scrim: rgb(0 0 0 / 0.6);
+  --focus: rgb(236 236 236 / 0.6);
+  --selection: rgb(236 236 236 / 0.2);
+  --danger: #ff7a70;
+
+  color-scheme: dark;
+}
+
+/* Tokens derivados: recalculados em cada tema */
+:root,
+.dark {
+  --signal: var(--ink); /* interruptor ligado, rádio, grade de carregamento */
+  --signal-ink: var(--ink-inverse);
+  --highlight: var(--ink); /* pico do brilho no rótulo "Pensando" */
+  --primary-fill: var(--ink);
+  --primary-ink: var(--ink-inverse);
+  --primary-shadow: none;
+}
+
+/* Ponte com os nomes que os componentes shadcn esperam */
+:root,
+.dark {
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--ink-inverse);
+  --secondary: var(--bubble);
+  --secondary-foreground: var(--ink);
+  --muted: var(--hover);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--hover);
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--focus);
+  --radius: 10px;
+}
+
+@theme inline {
+  /* Cores */
+  --color-canvas: var(--canvas);
+  --color-rail: var(--rail);
+  --color-surface: var(--surface);
+  --color-bubble: var(--bubble);
+  --color-edge: var(--edge);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-hover: var(--hover);
+  --color-press: var(--press);
+  --color-tooltip: var(--tooltip);
+  --color-scrim: var(--scrim);
+  --color-danger: var(--danger);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-highlight: var(--highlight);
+
+  /* Tipografia: no Grafite, a fonte do sistema, sem webfont */
+  --font-sans: var(--f-sans);
+  --font-mono: var(--f-mono);
+  --font-display: var(--f-display);
+  --font-label: var(--f-label);
+  --font-heading: var(--f-display);
+
+  --text-micro: 12px;
+  --text-micro--line-height: 16px;
+  --text-meta: 13px;
+  --text-meta--line-height: 18px;
+  --text-ui: 14px;
+  --text-ui--line-height: 20px;
+  --text-body: 16px;
+  --text-body--line-height: 1.5;
+  --text-h3: 18px;
+  --text-h3--line-height: 1.45;
+  --text-h2: 20px;
+  --text-h2--line-height: 1.4;
+  --text-display: var(--display-size);
+  --text-display--line-height: var(--display-leading);
+
+  /* Raios: uma regra por tipo de controle */
+  --radius-row: var(--r-row); /* linhas dentro de menus */
+  --radius-control: var(--r-control); /* botões, itens da barra lateral, cards, menus */
+  --radius-panel: var(--r-panel); /* painéis, menus do compositor, diálogos */
+  --radius-bubble: var(--r-bubble); /* mensagem do usuário */
+  --radius-composer: var(--r-composer); /* compositor */
+  --radius-badge: var(--r-badge); /* selos */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 22px;
+  --radius-4xl: 28px;
+
+  /* Movimento */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-stream: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-pop-in: pop-in 180ms var(--ease-out) both;
+  --animate-fade-in: fade-in 200ms var(--ease-out) both;
+  --animate-shimmer-text: shimmer-text 1.4s linear infinite;
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes shimmer-text {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: -100% 0;
+    }
+  }
+  @keyframes pixel-on {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    35% {
+      opacity: 1;
+    }
+  }
+  @keyframes eq-bounce {
+    0%,
+    100% {
+      transform: scaleY(0.35);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+}
+
+:root {
+  /* Layout */
+  --rail-w: 260px;
+  --header-h: 52px;
+  --thread-w: 768px;
+
+  /* Durações */
+  --dur-fast: 100ms;
+  --dur-base: 150ms;
+  --dur-menu: 180ms;
+  --dur-glide: 220ms;
+
+  /* Texto em streaming (transitions.dev · streaming-text) */
+  --stream-gap: 60ms;
+  --stream-fade: 350ms;
+  --stream-blur: 1px;
+  --stream-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    @apply border-line outline-ring;
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas text-ink;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  ::selection {
+    background: var(--selection);
+    color: var(--ink);
+  }
+  input,
+  textarea {
+    caret-color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+  /* Barra de rolagem discreta, da cor da tinta */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  a {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+/* ── Papéis tipográficos e preenchimento primário ──────── */
+@layer components {
+  .type-display {
+    font-family: var(--f-display);
+    text-transform: var(--display-case);
+    letter-spacing: var(--display-tracking);
+  }
+  .type-label {
+    font-family: var(--f-label);
+    text-transform: var(--label-case);
+    letter-spacing: var(--label-tracking);
+  }
+  .fill-primary {
+    background: var(--primary-fill);
+    color: var(--primary-ink);
+    box-shadow: var(--primary-shadow);
+  }
+}
+
+/* ── Texto em streaming ─────────────────────────────────── */
+.t-stream-w {
+  opacity: 0;
+  filter: blur(var(--stream-blur));
+  transition:
+    opacity var(--stream-fade) var(--stream-ease),
+    filter var(--stream-fade) var(--stream-ease);
+}
+.t-stream-w.is-in {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ── Resposta do agente (markdown) ──────────────────────── */
+.prose-chat {
+  font-size: 16px;
+  line-height: 1.625;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.prose-chat > * + * {
+  margin-top: 0.75em;
+}
+.prose-chat h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.5em;
+}
+.prose-chat h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-top: 1.25em;
+}
+.prose-chat h2 + *,
+.prose-chat h3 + * {
+  margin-top: 0.4em;
+}
+.prose-chat strong {
+  font-weight: 600;
+}
+.prose-chat ul,
+.prose-chat ol {
+  padding-left: 1.4em;
+}
+.prose-chat ul {
+  list-style: disc;
+}
+.prose-chat ol {
+  list-style: decimal;
+}
+.prose-chat li + li {
+  margin-top: 0.3em;
+}
+.prose-chat li::marker {
+  color: var(--ink-3);
+}
+.prose-chat a {
+  text-decoration: underline;
+}
+.prose-chat code:not(pre code) {
+  font-family: var(--f-mono);
+  font-size: 0.875em;
+  background: var(--bubble);
+  border-radius: 4px;
+  padding: 0.15em 0.35em;
+}
+.prose-chat blockquote {
+  border-left: 1px solid var(--line-strong);
+  padding-left: 1em;
+  color: var(--ink-2);
+}
+.prose-chat hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin-block: 1.5em;
+}
+.prose-chat table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.prose-chat th {
+  font-weight: 600;
+  text-align: left;
+}
+.prose-chat th,
+.prose-chat td {
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .t-stream-w {
+    transition: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}

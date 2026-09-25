@@ -1,0 +1,20 @@
+{
+  "_leia": "Configuração do agente. O nome da pasta é o identificador (slug): use letras minúsculas e hífens e não mude depois de publicado. Ícones disponíveis: robot, book-open, briefcase, calendar-check, chart-line-up, chat, compass, graduation-cap, heart, lightbulb, megaphone, path, pen-nib, rocket-launch, sparkle, target. Prioridade: quando dois documentos discordarem, vale o de número maior.",
+  "nome": "Agente Exemplo",
+  "descricao": "Responde dúvidas sobre o Método Exemplo, usando só o material do curso.",
+  "icone": "robot",
+  "ordem": 1,
+  "ativo": true,
+  "atalhos": [
+    "Por onde eu começo?",
+    "Quais são os 3 passos do método?",
+    "Monte meu checklist da semana"
+  ],
+  "documentos": [
+    {
+      "arquivo": "conhecimento/guia-do-metodo-exemplo.md",
+      "titulo": "Guia do Método Exemplo",
+      "prioridade": 10
+    }
+  ]
+}
