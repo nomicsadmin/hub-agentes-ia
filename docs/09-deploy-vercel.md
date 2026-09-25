@@ -2,6 +2,9 @@
 
 > Colocar o hub na internet com o seu domínio. ⏱ 20 min · 🧰 conta no GitHub e na Vercel.
 
+## Atalho: botão "Deploy na Vercel"
+O botão no topo do README cria o projeto na Vercel já pedindo as variáveis de ambiente. Use depois de criar o banco (docs/03), porque as tabelas vêm do `npx supabase db push`. Depois do primeiro deploy, siga os passos 4 a 6 abaixo (domínio, URLs no Supabase e admin).
+
 ## Passos
 1. **GitHub**: crie um repositório **privado** e envie o projeto. Peça à IA: "crie um repositório privado no GitHub e envie este projeto" (ela instala/usa o git e o GitHub CLI com você; se você baixou o ZIP, ela inicia o git na pasta). Sem terminal, o app **GitHub Desktop** também faz isso. O `.env.local`, `meus-materiais/` e os materiais dos agentes **não** vão.
 2. **Vercel**: **Add New > Project** → importe o repositório.
