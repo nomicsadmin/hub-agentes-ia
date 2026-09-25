@@ -1,6 +1,6 @@
 <div align="center">
 
-# Seu próprio "ChatGPT" treinado no seu método.
+# Seu próprio Agente de IA treinado no seu método.
 ### Com login, venda automática e painel de controle. No ar em uma tarde.
 
 Coloque seus materiais, crie seus agentes e libere o acesso para quem comprou.<br>
@@ -116,12 +116,7 @@ Planejamento com IA, design system, base de segurança e quatro frentes em paral
 
 Criado pela
 
-<a href="https://gruponomics.com.br" title="Nomics Tecnologia">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/img/nomics-tech-escuro.png">
-    <img alt="Nomics Tecnologia" src="docs/img/nomics-tech-claro.png" height="32">
-  </picture>
-</a>
+<a href="https://gruponomics.com.br" title="Nomics Tech"><img alt="" src="docs/img/nomics-tech-simbolo.png" height="22"> <b>Nomics Tech</b></a>
 
 <br><br>
 
