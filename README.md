@@ -116,7 +116,7 @@ Planejamento com IA, design system, base de segurança e quatro frentes em paral
 
 Criado pela
 
-<a href="https://nomics.com.br" title="Nomics Tecnologia">
+<a href="https://gruponomics.com.br" title="Nomics Tecnologia">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/img/nomics-tech-escuro.png">
     <img alt="Nomics Tecnologia" src="docs/img/nomics-tech-claro.png" height="32">
