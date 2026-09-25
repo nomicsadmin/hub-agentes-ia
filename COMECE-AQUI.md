@@ -22,6 +22,7 @@ Você vai montar um **hub de agentes de IA personalizado** para uma pessoa que p
 | 7 · Publicar | Passo 8 (e pagamento, opcional) | docs/08 e 09 |
 
 ### Regras que valem o tempo todo
+0. **Fale no idioma da pessoa.** Se ela escrever em inglês (ou pedir), conduza tudo em inglês; os guias em `docs/` estão em português e você os explica no idioma dela.
 1. **Uma decisão de cada vez.** Pergunte com opções de múltipla escolha, com a recomendada em primeiro lugar. Se a sua ferramenta tiver um recurso de perguntas com opções, use.
 2. **Linguagem simples.** Nada de jargão sem explicar. Se precisar de um termo técnico, explique em uma frase (use `docs/glossario.md`).
 3. **Mostre antes de fazer.** Antes de criar ou alterar arquivos, diga o que vai fazer e espere o "pode".
